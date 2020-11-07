@@ -54,9 +54,9 @@ function* generatePrimes(sieveLength = 10) {
   }
 }
 
-function getPrimes(max = 1000) {
+function getPrimes(max = 1000, sieveLength = 1000) {
   const primes = []
-  for (const prime of generatePrimes()) {
+  for (const prime of generatePrimes(sieveLength)) {
     if (prime > max)
       return primes;
 
