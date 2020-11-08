@@ -1,11 +1,4 @@
-/** start and end is inclusive */
-const filledArray = (start = 0, end = 100) => {
-  const result = new Array(end - start + 1);
-  for (let i = 0; start + i <= end; i++)
-    result[i] = start + i;
-
-  return result;
-}
+const array = require('./array');
 
 function strikeThrough(sieve, prime, fstIndex) {
   for (let i = fstIndex; i < sieve.length; i += prime)
@@ -19,7 +12,7 @@ function* generatePrimes(sieveLength = 10) {
   const primes = [];
   let maxNumber = sieveLength;
 
-  let sieve = filledArray(2, sieveLength);
+  let sieve = array.filledArray(sieveLength, 2);
   let fstRelevantSieveIndex = 0;
   while (true) {
     let foundPrime = false;
@@ -39,7 +32,7 @@ function* generatePrimes(sieveLength = 10) {
     }
 
     if (foundPrime === false) { // shift sieve, as there are no more primes in current sieve
-      sieve = filledArray(maxNumber + 1, maxNumber + sieveLength);
+      sieve = array.filledArray(maxNumber + sieveLength, maxNumber + 1);
       const startNumber = sieve[0]; // save in case it gets struck through 
       primes.forEach(prime => { // sieve through multiples of already known primes
         const primeRemainder = startNumber % prime;
