@@ -47,7 +47,7 @@ function* generatePrimes(sieveLength = 10) {
   }
 }
 
-function getPrimes(max = 1000, sieveLength = 1000) {
+const getPrimes = (max = 1000, sieveLength = 1000) => {
   const primes = []
   for (const prime of generatePrimes(sieveLength)) {
     if (prime > max)
@@ -57,7 +57,28 @@ function getPrimes(max = 1000, sieveLength = 1000) {
   }
 }
 
+const getPrimeFactorization = (primes, n) => {
+  const primeFactorization = [];
+  let m = n;
+  let i = 0;
+  while (m > 1) {
+    if (i >= primes.length)
+      throw new Error(`given primes [${primes}] are to low, to calc prime factorization of ${n}`);
+    
+    if (m % primes[i] === 0)
+      while (m % primes[i] === 0) {
+        primeFactorization.push(primes[i]);
+        m = m / primes[i];
+      }
+
+    i += 1;
+  } 
+
+  return primeFactorization;
+}
+
 module.exports = {
   getPrimes,
   generatePrimes,
+  getPrimeFactorization,
 }

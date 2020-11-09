@@ -12,3 +12,21 @@ describe('`getPrimes`', () => {
     ]);
   });
 });
+
+describe('`getPrimeFactorization`', () => {
+  const primes = [ 2, 3 ];
+
+  it('calculates correct prime factorization of 1', () => {
+    expect(prime.getPrimeFactorization(primes, 2)).toEqual([ 2 ]);
+  });
+
+  it('calculates correct prime factorization of 18', () => {
+    expect(prime.getPrimeFactorization(primes, 18)).toEqual([ 2, 3, 3 ]);
+  });
+
+  it('throws if not given enough primes', () => {
+    expect(() => { prime.getPrimeFactorization(primes, 10) }).toThrow(
+      'given primes [2,3] are to low, to calc prime factorization of 10'
+    );
+  });
+});
