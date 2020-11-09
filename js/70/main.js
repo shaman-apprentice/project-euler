@@ -1,18 +1,24 @@
 const array = require('../utilities/array');
+const prime = require('../utilities/prime');
 
-const isRelativePrime = (m, n) => {
-  if (m === 1)
-    return true;
+/** @param max max-value for m and n*/
+const createIsRelativePrime = (max) => {
+  const primes = prime.getPrimes(max);
 
-  for (let i = 2; i <= Math.min(m, n); i++)
-    if (m % i === 0 && n % i === 0)
-      return false;
-
-  return true;
+  return (m, n) => {
+    primeFactorizationOfM = prime.getPrimeFactorization(primes, m);
+    primeFactorizationOfN = prime.getPrimeFactorization(primes, n);
+    return !primeFactorizationOfM.some(p => primeFactorizationOfN.includes(p));
+  }
 }
 
-const phi = (n) => 
-  array.filledArray(n - 1).filter(m => isRelativePrime(m, n)).length;
+/** @param max max-value for n */
+const createPhi = (max) => {
+  const isRelativePrime = createIsRelativePrime(max);
+
+  return (n) =>
+    array.filledArray(n - 1).filter(m => isRelativePrime(m, n)).length;
+}
 
 const getMutations = (s) => {
   if (s.length <= 1)
@@ -33,13 +39,14 @@ const isMutation = (s, t) =>
   getMutations(s).includes(t)
 
 console.time('calc phi');
-console.log(phi(87109));  // 79180
-// console.log(phi(10**7 - 1)); 
+const phi = createPhi(10**7 - 1);
+// console.log(phi(87109));  // 79180
+console.log(phi(10**7 - 1)); // 6637344
 console.timeEnd('calc phi');
 
 module.exports = {
-  isRelativePrime,
-  phi,
+  createIsRelativePrime,
+  createPhi,
   getMutations,
   isMutation,
 }

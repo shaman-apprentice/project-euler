@@ -1,11 +1,13 @@
 const { 
-  isRelativePrime,
-  phi,
+  createIsRelativePrime,
+  createPhi,
   getMutations,
   isMutation,
 } = require('./main');
 
 describe('`isRelativePrime`', () => {
+  const isRelativePrime = createIsRelativePrime(10);
+
   it('verifies 1 as relativePrime to everything', () => {
     expect(isRelativePrime(1, 8)).toBe(true);
   });
@@ -20,6 +22,8 @@ describe('`isRelativePrime`', () => {
 });
 
 describe('`phi`', () => {
+  const phi = createPhi(9);
+
   it('calcs phi(9)=6', () => {
     expect(phi(9)).toBe(6);
   });
