@@ -17,11 +17,16 @@ describe('`getPrimeFactorization`', () => {
   const primes = [ 2, 3 ];
 
   it('calculates correct prime factorization of 1', () => {
-    expect(prime.getPrimeFactorization(primes, 2)).toEqual([ 2 ]);
+    expect(prime.getPrimeFactorization(primes, 2)).toEqual([
+      { base: 2, exponent: 1 },
+    ]);
   });
 
   it('calculates correct prime factorization of 18', () => {
-    expect(prime.getPrimeFactorization(primes, 18)).toEqual([ 2, 3, 3 ]);
+    expect(prime.getPrimeFactorization(primes, 18)).toEqual([
+      { base: 2, exponent: 1 },
+      { base: 3, exponent: 2 },
+    ]);
   });
 
   it('throws if not given enough primes', () => {

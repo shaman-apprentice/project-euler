@@ -1,25 +1,8 @@
 const { 
-  createIsRelativePrime,
   createPhi,
   getMutations,
   isMutation,
 } = require('./main');
-
-describe('`isRelativePrime`', () => {
-  const isRelativePrime = createIsRelativePrime(10);
-
-  it('verifies 1 as relativePrime to everything', () => {
-    expect(isRelativePrime(1, 8)).toBe(true);
-  });
-
-  it('verifies 4 as relative prime to 9', () => {
-    expect(isRelativePrime(4, 9)).toBe(true);
-  });
-
-  it('verifies 3 as not relative prime to 6', () => {
-    expect(isRelativePrime(3, 6)).toBe(false);
-  });
-});
 
 describe('`phi`', () => {
   const phi = createPhi(9);

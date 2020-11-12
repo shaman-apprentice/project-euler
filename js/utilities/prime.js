@@ -57,6 +57,7 @@ const getPrimes = (max = 1000, sieveLength = 1000) => {
   }
 }
 
+/** @return [{ base, exponent }] */
 const getPrimeFactorization = (primes, n) => {
   const primeFactorization = [];
   let m = n;
@@ -65,11 +66,14 @@ const getPrimeFactorization = (primes, n) => {
     if (i >= primes.length)
       throw new Error(`given primes [${primes}] are to low, to calc prime factorization of ${n}`);
     
-    if (m % primes[i] === 0)
+    if (m % primes[i] === 0) {
+      let exponent = 0;
       while (m % primes[i] === 0) {
-        primeFactorization.push(primes[i]);
+        exponent += 1;
         m = m / primes[i];
       }
+      primeFactorization.push({ base: primes[i], exponent });
+    }
 
     i += 1;
   } 
