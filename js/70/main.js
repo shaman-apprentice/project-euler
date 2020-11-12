@@ -2,21 +2,17 @@ const array = require('../utilities/array');
 const { createPhi, isMutation } = require('./utilities');
 
 console.time('calculating');
-const max = 10 ** 1 - 1;
-const phi = createPhi(max);
-// todo min before isMutation
-const candidates = array.filledArray(max, 2)
-  .map(n => ({ n, phi: phi(n) }))
-  .filter(o => isMutation(String(o.n), String(o.phi)));
 
-let min = {
-  n: candidates[0].n,
-  nDividedThroughPhi: candidates[0].n / candidates[0].phi,
-};
-for (candidate of candidates.slice(1)) {
-  const nDividedThroughPhi = candidate.n / candidate.phi;
-  if (nDividedThroughPhi < min.nDividedThroughPhi) 
-    min = { n: candidate.n, nDividedThroughPhi };
+const max = 10 ** 7 - 1;
+const phi = createPhi(max);
+
+let min = { n: -1, nDividedThroughPhi: max };
+for (let n of array.filledArray(max, 2)) {
+  const phiOfN = phi(n);
+  const nDividedThroughPhi = n / phiOfN;
+  if (nDividedThroughPhi < min.nDividedThroughPhi && isMutation(String(n), String(phiOfN)))
+    min = { n, nDividedThroughPhi };
 }
-console.timeEnd('calculating'); // calculating: 3:35:43.615 (h:mm:ss.mmm)
+
+console.timeEnd('calculating'); // calculating: 26:23.839 (m:ss.mmm)
 console.log(min); // { n: 8319823, nDividedThroughPhi: 1.0007090511248113 }
