@@ -10,19 +10,30 @@ while [ $# -gt 0 ]; do
   shift
 done
 
-TIMEFORMAT="%R" # to make `time` output only 'real'. Unit will be seconds. (Site note:`time` writes into stderr)
-languages=("main.js:js/:node" "main.py:python/:python main.exe:c/ Main.java:java_/_:java") # file:pathPrefix:execComm
-for language in ${languages[*]}; do
-  myTmp=(${language//:/ })
-  file=${myTmp[0]}
-  pathPrefix=${myTmp[1]}
-  execComm=${myTmp[2]}
+function getExecCmd { # $1 is language, $2 is problem number
+  case $1 in
+    js)
+      echo "node js/$2/main.js"
+      ;;
+    python)
+      echo "python -m python.$2.main"
+      ;;
+    c)
+      echo "c/$2/main.exe"
+      ;;
+    java)
+      echo "java java_/_$2/Main.java"
+      ;;
+  esac
+}
 
+TIMEFORMAT="%R" # to make `time` output only 'real'. Unit will be seconds. (Site note: `time` writes into stderr)
+for language in "js" "python" "c" "java"; do
   for problemNumber in $(seq -f "%02g" ${startProblem} ${endProblem}); do
-    command="${execComm} ${pathPrefix}${problemNumber}/${file}"
-    echo "Running '${command}' ${execTimes}-times:"
-    for execTime in $(seq ${1} ${execTimes}); do
-      time ${command} >/dev/null
+    execCmd=$(getExecCmd $language $problemNumber)
+    echo "Running '${execCmd}' ${execTimes}-times:"
+    for execTime in $(seq ${execTimes}); do
+      time ${execCmd} >/dev/null
     done
   done
 done
