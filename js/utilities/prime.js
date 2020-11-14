@@ -8,7 +8,7 @@ function strikeThrough(sieve, prime, fstIndex) {
 /** Sieve of Eratosthenes 
  * @param sieveLength: Length of sieve to hold in RAM
  */
-function* generatePrimes(sieveLength = 10) {
+function* generatePrimes(sieveLength = 1000) {
   const primes = [];
   let maxNumber = sieveLength;
 
@@ -61,24 +61,22 @@ const getPrimes = (max = 1000, sieveLength = 1000) => {
 const getPrimeFactorization = (primes, n) => {
   const primeFactorization = [];
   let m = n;
-  let i = 0;
-  while (m > 1) {
-    if (i >= primes.length)
-      throw new Error(`given primes [${primes}] are to low, to calc prime factorization of ${n}`);
-    
-    if (m % primes[i] === 0) {
+  
+  for (const prime of primes) {
+    if (m % prime === 0) {
       let exponent = 0;
-      while (m % primes[i] === 0) {
+      while (m % prime === 0) {
         exponent += 1;
-        m = m / primes[i];
+        m = m / prime;
       }
-      primeFactorization.push({ base: primes[i], exponent });
+      primeFactorization.push({ base: prime, exponent });
+
+      if (m === 1)
+        return primeFactorization;
     }
-
-    i += 1;
-  } 
-
-  return primeFactorization;
+  }
+  
+  throw new Error(`given primes [${primes}] are to low, to calc prime factorization of ${n}`);
 }
 
 module.exports = {
