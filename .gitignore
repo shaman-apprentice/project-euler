@@ -1,3 +1,4 @@
 *.exe
 *.class
 node_modules
+python/**/__pycache__
