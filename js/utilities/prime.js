@@ -39,9 +39,9 @@ function* generatePrimes(sieveLength = 10) {
         fstIndexToStrikeThrough = primeRemainder === 0
           ? 0
           : prime - primeRemainder;
-        strikeThrough(sieve, prime, fstIndexToStrikeThrough)
+        strikeThrough(sieve, prime, fstIndexToStrikeThrough);
       });
-      maxNumber = maxNumber + sieveLength;
+      maxNumber += sieveLength;
       fstRelevantSieveIndex = 0;
     }
   }
