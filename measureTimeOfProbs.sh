@@ -16,7 +16,7 @@ function getExecCmd { # $1 is language, $2 is problem number
       echo "node js/$2/main.js"
       ;;
     python)
-      echo "python -m python.$2.main"
+      echo "python -m python._$2.main"
       ;;
     c)
       echo "c/$2/main.exe"
