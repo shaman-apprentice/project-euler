@@ -8,4 +8,11 @@ public class PrimeFactor {
     this.base = base;
     this.exponent = exponent;
   }
+
+  public String toString() {
+    return String.format(
+      "{ base: %d, exponent: %d}",
+      this.base, this.exponent
+    );
+  }
 }

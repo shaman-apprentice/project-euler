@@ -7,7 +7,10 @@ import java_.utilities.PrimeFactor;
 
 public class Main {
   public static void main(String[] args) {
-    List<PrimeFactor> pfs = Prime.getPrimeFactorization(Prime.getPrimes(22, 1000), 22);
-    pfs.forEach(pf -> System.out.println(pf.base + "^" + pf.exponent) );
+    List<PrimeFactor> primeFactorization = Prime.getPrimeFactorization(
+      Prime.generatePrimes(1000),
+      600851475143L
+    );
+    System.out.println(primeFactorization.get(primeFactorization.size() - 1));
   }
 }
