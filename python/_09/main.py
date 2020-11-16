@@ -7,4 +7,4 @@ for a in range(1, targetSum):
     c = targetSum - a - b
     if isPythagoreanTriplet(a, b, c):
       print(a * b * c)
-      break
+      exit()

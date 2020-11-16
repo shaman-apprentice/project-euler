@@ -7,6 +7,6 @@ for (let a = 1; a < targetSum; a++)
     const c = targetSum - a - b;
     if (isPythagoreanTriplet(a, b, c)) {
       console.log(a * b * c);
-      break;
+      process.exit();
     }
   }
