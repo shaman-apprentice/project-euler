@@ -8,9 +8,9 @@ import java_.utilities.PrimeFactor;
 public class Main {
   public static void main(String[] args) {
     List<PrimeFactor> primeFactorization = Prime.getPrimeFactorization(
-      Prime.generatePrimes(1000),
+      Prime.generatePrimes(),
       600851475143L
     );
-    System.out.println(primeFactorization.get(primeFactorization.size() - 1));
+    System.out.println(primeFactorization.get(primeFactorization.size() - 1).base);
   }
 }

@@ -2,22 +2,26 @@ package java_.utilities;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.PrimitiveIterator;
 import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 import java.util.stream.Stream;
-
-import java_.utilities.PrimeFactor;
 
 public class Prime {
   public static PrimeGenerator generatePrimes(int sieveLength) {
     return new PrimeGenerator(sieveLength);
   }
 
+  public static PrimeGenerator generatePrimes() {
+    return new PrimeGenerator(1000);
+  }
+
   public static List<Integer> getPrimes(int max, int sieveLength) {
     return Stream.generate(Prime.generatePrimes(sieveLength)::next)
       .takeWhile(prime -> { return prime <= max; })
       .collect(Collectors.toList());
+  }
+
+  public static List<Integer> getPrimes(int max) {
+    return Prime.getPrimes(max, 1000);
   }
 
   public static List<PrimeFactor> getPrimeFactorization(Iterable<Integer> primes, long n) {

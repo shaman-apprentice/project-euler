@@ -33,8 +33,8 @@ public class PrimeGenerator implements Iterable<Integer>, Iterator<Integer> {
   }
 
   private int shakeNextPrime() {
-    for (int i = this.fstRelevantIndex; i < sieve.length; i++) {
-      if (sieve[i] != -1) {
+    for (int i = this.fstRelevantIndex; i < this.sieve.length; i++) {
+      if (this.sieve[i] != -1) {
         int nextPrime = sieve[i];
         this.primes.add(nextPrime);
         this.fstRelevantIndex = i + 1;
@@ -58,9 +58,11 @@ public class PrimeGenerator implements Iterable<Integer>, Iterator<Integer> {
   private void shiftSieve() {
     this.sieve = IntStream.range(this.maxNumber + 1, this.maxNumber + this.sieveLength + 1).toArray();
     int startNumber = this.sieve[0];
-    primes.forEach(prime -> {
+    this.primes.forEach(prime -> {
       int primeRemainder = startNumber % prime;
-      int fstIndexToStrikeThrough = primeRemainder == 0 ? 0 : prime - primeRemainder;
+      int fstIndexToStrikeThrough = primeRemainder == 0
+        ? 0
+        : prime - primeRemainder;
       this.strikeThrough(prime, fstIndexToStrikeThrough);
     });
     this.maxNumber += this.sieveLength;
