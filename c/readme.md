@@ -3,3 +3,13 @@
 gcc c/xx/main.c -o c/xx/main
 c\xx\main.exe
 ```
+
+### How to compile own utility library
+[Basic tutorial](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_C_libraries.html)
+```cmd
+# compile static library
+gcc -o c/utilities/prime.o -c c/utilities/prime.c
+
+# link static library
+gcc c/03/main.c -o c/03/main c/utilities/prime.o
+```
