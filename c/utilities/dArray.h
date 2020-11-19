@@ -2,6 +2,8 @@
 
 #define _DINTARRAY_H_
 
+#include "./PrimeFactor.h"
+
 #define createDArrayGenerics(T) \
 struct D##T##Array { \
   T* array; \
@@ -12,5 +14,6 @@ struct D##T##Array { \
 struct D##T##Array createD##T##Array(int initialSize);
 
 createDArrayGenerics(int)
+createDArrayGenerics(PrimeFactor)
 
 #endif
