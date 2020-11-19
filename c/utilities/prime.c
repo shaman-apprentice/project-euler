@@ -53,7 +53,7 @@ struct PrimeGenerator createPrimeGenerator(int sieveLength) {
     pg.sieve[i] = i + 1;
   pg.fstRelevantSieveIndex = 1;
   pg.nextPrimeIndex = 0;
-  pg.primes = createDArrayint(256);
+  pg.primes = createDintArray(256);
   pg.nextPrime = &_nextPrime;
   return pg;
 }

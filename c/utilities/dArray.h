@@ -3,13 +3,13 @@
 #define _DINTARRAY_H_
 
 #define createDArrayGenerics(T) \
-struct DArray##T { \
+struct D##T##Array { \
   T* array; \
   int size; \
   int nextIndex; \
-  void (*push)(struct DArray##T * self, T elem); \
+  void (*push)(struct D##T##Array* self, T elem); \
 }; \
-struct DArray##T createDArray##T(int initialSize);
+struct D##T##Array createD##T##Array(int initialSize);
 
 createDArrayGenerics(int)
 

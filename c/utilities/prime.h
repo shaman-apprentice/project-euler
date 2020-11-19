@@ -10,10 +10,9 @@ struct PrimeGenerator {
   int* sieve;
   int fstRelevantSieveIndex;
   int nextPrimeIndex;
-  struct DArrayint primes;
+  struct DintArray primes;
   int (*nextPrime)(struct PrimeGenerator* self);
 };
 struct PrimeGenerator createPrimeGenerator(int sieveLength);
 
 #endif
-

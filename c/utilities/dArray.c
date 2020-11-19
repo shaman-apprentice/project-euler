@@ -3,7 +3,7 @@
 #include "./dArray.h"
 
 #define deriveDArray(T) \
-void _push(struct DArray##T * self, T elem) { \
+void _push(struct D##T##Array* self, T elem) { \
   if (self->nextIndex >= self->size) { \
     self->size *= 2; \
     self->array = realloc(self->array, self->size); \
@@ -12,8 +12,8 @@ void _push(struct DArray##T * self, T elem) { \
   self->array[self->nextIndex++] = elem; \
 } \
  \
-struct DArray##T createDArray##T(int initialSize) { \
-  struct DArray##T darray; \
+struct D##T##Array createD##T##Array(int initialSize) { \
+  struct D##T##Array darray; \
   darray.size = initialSize; \
   darray.nextIndex = 0; \
   darray.array = malloc(initialSize * sizeof(T)); \
