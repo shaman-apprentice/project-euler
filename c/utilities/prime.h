@@ -2,7 +2,7 @@
 
 #define _PRIME_H_
 
-#include "./dIntArray.h"
+#include "./dArray.h"
 
 struct PrimeGenerator {
   int sieveLength;
@@ -10,7 +10,7 @@ struct PrimeGenerator {
   int* sieve;
   int fstRelevantSieveIndex;
   int nextPrimeIndex;
-  struct DIntArray primes;
+  struct DArrayint primes;
   int (*nextPrime)(struct PrimeGenerator* self);
 };
 struct PrimeGenerator createPrimeGenerator(int sieveLength);

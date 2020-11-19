@@ -1,0 +1,24 @@
+#include "stdlib.h"
+
+#include "./dArray.h"
+
+#define deriveDArray(T) \
+void _push(struct DArray##T * self, T elem) { \
+  if (self->nextIndex >= self->size) { \
+    self->size *= 2; \
+    self->array = realloc(self->array, self->size); \
+  } \
+ \
+  self->array[self->nextIndex++] = elem; \
+} \
+ \
+struct DArray##T createDArray##T(int initialSize) { \
+  struct DArray##T darray; \
+  darray.size = initialSize; \
+  darray.nextIndex = 0; \
+  darray.array = malloc(initialSize * sizeof(T)); \
+  darray.push = &_push; \
+  return darray; \
+}
+
+deriveDArray(int)
