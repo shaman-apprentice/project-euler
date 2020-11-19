@@ -14,5 +14,5 @@ gcc -o c/utilities/prime.o -c c/utilities/prime.c
 gcc c/03/main.c -o c/03/main c/utilities/prime.o
 
 # compile and run
-gcc c/03/main.c -o c/03/main c/utilities/prime.o && c\03\main.exe
+gcc c/03/main.c -o c/03/main c/utilities/prime.o c/utilities/dIntArray.o && c\03\main.exe
 ```

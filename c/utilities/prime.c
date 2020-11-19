@@ -1,5 +1,7 @@
-#include <stdio.h>
+#include <stdlib.h>
+
 #include "./prime.h"
+#include "./dIntArray.h"
 
 void _strikeThrough(struct PrimeGenerator* self, int prime, int fstIndex) {
   for (int i = fstIndex; i < self->sieveLength; i += prime)
@@ -12,7 +14,7 @@ void _shiftSieve(struct PrimeGenerator* self) {
   int startNumber = self->sieve[0];
 
   for(int i = 0; i < self->nextPrimeIndex; i++) { // strike through multiple of previous found primes
-    int prime = self->primes[i];
+    int prime = self->primes.array[i];
     int primeRemainder = startNumber % prime;
     int fstIndexToStrikeThrough = primeRemainder == 0
       ? 0
@@ -28,7 +30,7 @@ int _nextPrime(struct PrimeGenerator* self) {
   for (int i = self->fstRelevantSieveIndex; i < self->sieveLength; i++) {
     if (self->sieve[i] != -1) {
       int nextPrime = self->sieve[i];
-      self->primes[self->nextPrimeIndex++] = nextPrime;
+      self->primes.array[self->nextPrimeIndex++] = nextPrime;
       self->fstRelevantSieveIndex = i + 1;
 
       _strikeThrough(self, nextPrime, i + nextPrime);
@@ -46,12 +48,12 @@ struct PrimeGenerator createPrimeGenerator(int sieveLength) {
   struct PrimeGenerator pg;
   pg.sieveLength = sieveLength;
   pg.maxNumber = sieveLength;
-  // pg.sieve = malloc(sieveLength * sizeof(int));
+  pg.sieve = malloc(sieveLength * sizeof(int));
   for (int i = 0; i < sieveLength; i++)
     pg.sieve[i] = i + 1;
   pg.fstRelevantSieveIndex = 1;
   pg.nextPrimeIndex = 0;
-  // pg.primes = malloc(sieveLength * sizeof(int));
+  pg.primes = createDIntArray(256);
   pg.nextPrime = &_nextPrime;
   return pg;
 }

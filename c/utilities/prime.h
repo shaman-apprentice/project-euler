@@ -2,13 +2,15 @@
 
 #define _PRIME_H_
 
+#include "./dIntArray.h"
+
 struct PrimeGenerator {
   int sieveLength;
   int maxNumber;
-  int sieve[100]; // todo replace with dynamic length array
+  int* sieve;
   int fstRelevantSieveIndex;
   int nextPrimeIndex;
-  int primes[100]; // todo replace with dynamic length array
+  struct DIntArray primes;
   int (*nextPrime)(struct PrimeGenerator* self);
 };
 struct PrimeGenerator createPrimeGenerator(int sieveLength);
