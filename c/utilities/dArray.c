@@ -7,7 +7,7 @@
 void _push##T(struct D##T##Array* self, T elem) { \
   if (self->length >= self->capacity) { \
     self->capacity *= 2; \
-    self->array = realloc(self->array, self->capacity); \
+    self->array = realloc(self->array, self->capacity * sizeof(T)); \
   } \
  \
   self->array[self->length++] = elem; \
