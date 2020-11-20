@@ -7,8 +7,8 @@
 #define createDArrayGenerics(T) \
 struct D##T##Array { \
   T* array; \
-  int size; \
-  int nextIndex; \
+  int capacity; \
+  int length; \
   void (*push)(struct D##T##Array* self, T elem); \
 }; \
 struct D##T##Array createD##T##Array(int initialSize);

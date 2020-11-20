@@ -8,15 +8,13 @@ c\xx\main.exe
 [Basic tutorial](https://www.cs.swarthmore.edu/~newhall/unixhelp/howto_C_libraries.html)
 ```cmd
 # compile static library
-gcc -o c/utilities/prime.o -c c/utilities/prime.c
 gcc -o c/utilities/dArray.o -c c/utilities/dArray.c
+gcc -o c/utilities/prime.o -c c/utilities/prime.c
 
 # link static library
 gcc c/03/main.c -o c/03/main c/utilities/prime.o
 
 # compile and run
-gcc c/03/main.c -o c/03/main c/utilities/prime.o c/utilities/dIntArray.o && c\03\main.exe
-
 gcc c/03/main.c -o c/03/main c/utilities/dArray.o c/utilities/prime.o && c\03\main.exe
 ```
 

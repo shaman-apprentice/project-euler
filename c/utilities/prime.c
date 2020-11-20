@@ -13,7 +13,7 @@ void _shiftSieve(struct PrimeGenerator* self) {
     self->sieve[i] = self->maxNumber + 1 + i;
   int startNumber = self->sieve[0];
 
-  for(int i = 0; i < self->nextPrimeIndex; i++) { // strike through multiple of previous found primes
+  for(int i = 0; i < self->primes.length; i++) { // strike through multiple of previous found primes
     int prime = self->primes.array[i];
     int primeRemainder = startNumber % prime;
     int fstIndexToStrikeThrough = primeRemainder == 0
@@ -30,7 +30,7 @@ int _nextPrime(struct PrimeGenerator* self) {
   for (int i = self->fstRelevantSieveIndex; i < self->sieveLength; i++) {
     if (self->sieve[i] != -1) {
       int nextPrime = self->sieve[i];
-      self->primes.array[self->nextPrimeIndex++] = nextPrime;
+      self->primes.push(&(self->primes), nextPrime);
       self->fstRelevantSieveIndex = i + 1;
 
       _strikeThrough(self, nextPrime, i + nextPrime);
@@ -52,7 +52,6 @@ struct PrimeGenerator createPrimeGenerator(int sieveLength) {
   for (int i = 0; i < sieveLength; i++)
     pg.sieve[i] = i + 1;
   pg.fstRelevantSieveIndex = 1;
-  pg.nextPrimeIndex = 0;
   pg.primes = createDintArray(256);
   pg.nextPrime = &_nextPrime;
   return pg;

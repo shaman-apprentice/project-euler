@@ -9,7 +9,6 @@ struct PrimeGenerator {
   int maxNumber;
   int* sieve;
   int fstRelevantSieveIndex;
-  int nextPrimeIndex;
   struct DintArray primes;
   int (*nextPrime)(struct PrimeGenerator* self);
 };
