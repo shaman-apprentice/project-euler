@@ -44,15 +44,36 @@ int _nextPrime(struct PrimeGenerator* self) {
   return _nextPrime(self);
 }
 
-struct PrimeGenerator createPrimeGenerator(int sieveLength) {
+struct PrimeGenerator createPrimeGenerator() {
   struct PrimeGenerator pg;
-  pg.sieveLength = sieveLength;
-  pg.maxNumber = sieveLength;
-  pg.sieve = malloc(sieveLength * sizeof(int));
-  for (int i = 0; i < sieveLength; i++)
+  pg.sieveLength = 1000;
+  pg.maxNumber = pg.sieveLength;
+  pg.sieve = malloc(pg.sieveLength * sizeof(int));
+  for (int i = 0; i < pg.sieveLength; i++)
     pg.sieve[i] = i + 1;
   pg.fstRelevantSieveIndex = 1;
   pg.primes = createDintArray(256);
   pg.nextPrime = &_nextPrime;
   return pg;
+}
+
+struct DPrimeFactorArray getPrimeFactorization(long long n) {
+  struct PrimeGenerator pg = createPrimeGenerator();
+  struct DPrimeFactorArray primeFactorization = createDPrimeFactorArray(4);
+
+  while (n != 1) {
+    int prime = pg.nextPrime(&pg);
+    if (n % prime == 0) {
+      PrimeFactor pf;
+      pf.base = prime;
+      pf.exponent = 0;
+      while (n % prime == 0) {
+        pf.exponent += 1;
+        n = n / prime;
+      }
+      primeFactorization.push(&primeFactorization, pf);
+    }
+  }
+
+  return primeFactorization;
 }

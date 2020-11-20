@@ -12,6 +12,8 @@ struct PrimeGenerator {
   struct DintArray primes;
   int (*nextPrime)(struct PrimeGenerator* self);
 };
-struct PrimeGenerator createPrimeGenerator(int sieveLength);
+struct PrimeGenerator createPrimeGenerator();
+
+struct DPrimeFactorArray getPrimeFactorization(long long n);
 
 #endif
