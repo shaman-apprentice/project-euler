@@ -12,7 +12,7 @@ gcc -o c/utilities/dArray.o -c c/utilities/dArray.c
 gcc -o c/utilities/prime.o -c c/utilities/prime.c
 
 # link static library
-gcc c/03/main.c -o c/03/main c/utilities/prime.o
+gcc c/04/main.c -o c/03/main c/utilities/prime.o c/utilities/dArray.o
 
 # compile and run
 gcc c/03/main.c -o c/03/main c/utilities/dArray.o c/utilities/prime.o && c\03\main.exe
