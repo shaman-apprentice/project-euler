@@ -5,6 +5,7 @@
 #include "../utilities/PrimeFactor.h"
 
 int main() {
-  struct DPrimeFactorArray primeFactorization = getPrimeFactorization(600851475143);
+  struct PrimeGenerator pg = createPrimeGenerator();
+  struct DPrimeFactorArray primeFactorization = getPrimeFactorization(pg, 600851475143);
   printf("%d\n", primeFactorization.array[primeFactorization.length - 1].base);
 }

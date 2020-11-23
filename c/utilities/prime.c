@@ -57,10 +57,28 @@ struct PrimeGenerator createPrimeGenerator() {
   return pg;
 }
 
-struct DPrimeFactorArray getPrimeFactorization(long long n) {
-  struct PrimeGenerator pg = createPrimeGenerator();
+struct DPrimeFactorArray getPrimeFactorization(struct PrimeGenerator pg, long long n) {
   struct DPrimeFactorArray primeFactorization = createDPrimeFactorArray(4);
 
+  // use existing primes of pg
+  for (int i = 0; i < pg.primes.length; i++) {
+    int prime = pg.primes.array[i];
+    if (n % prime == 0) {
+      PrimeFactor pf;
+      pf.base = prime;
+      pf.exponent = 0;
+      while (n % prime == 0) {
+        pf.exponent += 1;
+        n = n / prime;
+      }
+      primeFactorization.push(&primeFactorization, pf);
+
+      if (n == 1)
+        return primeFactorization;
+    }
+  }
+
+  // generate new primes until finished
   while (n != 1) {
     int prime = pg.nextPrime(&pg);
     if (n % prime == 0) {

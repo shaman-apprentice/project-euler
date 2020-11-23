@@ -14,6 +14,6 @@ struct PrimeGenerator {
 };
 struct PrimeGenerator createPrimeGenerator();
 
-struct DPrimeFactorArray getPrimeFactorization(long long n);
+struct DPrimeFactorArray getPrimeFactorization(struct PrimeGenerator pg, long long n);
 
 #endif
