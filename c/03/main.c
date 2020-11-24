@@ -6,6 +6,6 @@
 
 int main() {
   struct PrimeGenerator pg = createPrimeGenerator();
-  struct DPrimeFactorArray primeFactorization = getPrimeFactorization(pg, 600851475143);
+  struct DPrimeFactorArray primeFactorization = getPrimeFactorization(&pg, 600851475143);
   printf("%d\n", primeFactorization.array[primeFactorization.length - 1].base);
 }
