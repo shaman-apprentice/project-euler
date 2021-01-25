@@ -79,8 +79,43 @@ const getPrimeFactorization = (primes, n) => {
   throw new Error(`given primes [${primes}] are to low, to calc prime factorization of ${n}`);
 }
 
+const createGetPrimeFactorizationWithDynamicCachedPrimes = () => {
+  const primeGenerator = generatePrimes()
+  const primes = [ primeGenerator.next().value ]
+
+  const getPF = (n, startIndex = 0) => {
+    const primeFactorization = [];
+
+    for (let i = startIndex; i < primes.length; i++) {
+      const prime = primes[i]
+
+      if (n % prime === 0) {
+        let exponent = 0;
+        while (n % prime === 0) {
+          exponent += 1;
+          n = n / prime;
+        }
+        primeFactorization.push({ base: prime, exponent });
+  
+        if (n === 1)
+          return primeFactorization;
+      }
+    }
+
+    for (let i = 0; i < 1000; i++)
+      primes.push(primeGenerator.next().value)
+
+    primeFactorization.push(...getPF(n, primes.length - 1000))
+
+    return primeFactorization
+  }
+
+  return getPF
+}
+
 module.exports = {
   getPrimes,
   generatePrimes,
   getPrimeFactorization,
+  createGetPrimeFactorizationWithDynamicCachedPrimes
 }

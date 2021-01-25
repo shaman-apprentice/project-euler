@@ -42,3 +42,14 @@ describe('`getPrimeFactorization`', () => {
     ]);
   });
 });
+
+describe("createGetPrimeFactorizationWithDynamicCachedPrimes", () => {
+  test("prime factorization of 21", () => {
+    const getPrimeFactorization = prime.createGetPrimeFactorizationWithDynamicCachedPrimes()
+
+    expect(getPrimeFactorization(21)).toEqual([
+      { base: 3, exponent: 1 },
+      { base: 7, exponent: 1 },
+    ])
+  })
+})
