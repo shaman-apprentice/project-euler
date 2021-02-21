@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <string.h>
+#include "../utilities/reverseStr.h"
 
 bool isPalindromic(int n) {
   char str[7]; // size 7 cause last char of string is always `\0`
   sprintf(str, "%d", n);
   char strReversed[7];
-  strrev(strcpy(strReversed, str)); // note that strrev returns pointer to inplace changed result, therefore copy first
+  reverseStr(strcpy(strReversed, str)); // note that strrev returns pointer to inplace changed result, therefore copy first
 
   return strcmp(str, strReversed) == 0;
 } 
