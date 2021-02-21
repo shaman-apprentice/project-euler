@@ -1,5 +1,8 @@
 c/**/*.exe
 c/**/*.o
+c-O3/
 java_/**/*.class
 js/node_modules
 python/**/__pycache__
+wasm/*/*
+wasm-O3/
