@@ -36,8 +36,7 @@ function getExecCmd { # $1 is language, $2 is problem number
   esac
 }
 
-TIMEFORMAT="%R" # to make `time` output only 'real'. Unit will be seconds. (Site note: `time` writes into stderr)
-for language in "js" "wasm" "wasm-O3" "python" "c" "c-O3" "java"; do
+TIMEFORMAT="%R" # to make `time` output only 'real'. Unit will be seconds. (Side note: `time` writes into stderr)
   for problemNumber in $(seq -f "%02g" ${startProblem} ${endProblem}); do
     execCmd=$(getExecCmd $language $problemNumber)
     echo "Running '${execCmd}' ${execTimes}-times:"
