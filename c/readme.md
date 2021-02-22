@@ -18,7 +18,7 @@ gcc c/03/main.c -o c/03/main c/utilities/prime.o c/utilities/dArray.o
 # compile and run
 gcc c/03/main.c -o c/03/main c/utilities/dArray.o c/utilities/prime.o && c\03\main.exe
 
-gcc c/70/main.c -o c/70/main c/70/utilities.o c/utilities/dArray.o c/utilities/prime.o && c\70\main.exe
+gcc c/70/main.c -o c/70/main c/70/utilities.o c/utilities/dArray.o c/utilities/prime.o -lm
 ```
 
 ### See output of preprocessor
